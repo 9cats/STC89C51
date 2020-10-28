@@ -1,0 +1,125 @@
+C51 COMPILER V9.57.0.0   TIME                                                              01/13/2020 15:09:01 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE TIME
+OBJECT MODULE PLACED IN .\Objects\time.obj
+COMPILER INVOKED BY: D:\Keil uVision5\C51\BIN\C51.EXE time.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\time.lst) OBJECT(.\Objects\time.obj)
+
+line level    source
+
+   1          /***********************************************
+   2           *      auther:YI
+   3           *      time:2010-1-12-21:37
+   4           *
+   5           *      P0接J12 P3接JP16
+   6           *      P2接JP5
+   7           *  (防抖？)
+   8          ************************************************/
+   9          
+  10          #include <reg51.h>
+  11          #include <intrins.h>
+  12          typedef unsigned char u8;
+  13          typedef unsigned int u16;
+  14          typedef unsigned long u32;
+  15          void delayms(u32 ms);           //延时函数
+  16          
+  17          u8 tab_num[]  = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x40};     //段选
+  18          u8 disp_led[] = {0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd ,0xfe};                                                                       //位选
+  19          sbit ADD = P2^0;//按钮
+  20          
+  21          void main()
+  22          {
+  23   1              u8 i,j,flag=0;
+  24   1              u8 timeNum[8]={0,0,10,0,0,10,0,0};
+  25   1              
+  26   1              while(1)
+  27   1              {
+  28   2                      if(++j>70)
+  29   2                      {
+  30   3                              j=0;
+  31   3                              timeNum[0]++;
+  32   3                              if(timeNum[0]==10)
+  33   3                              {
+  34   4                                      timeNum[0]=0;
+  35   4                                      timeNum[1]++;
+  36   4                                      if(timeNum[1]==6)
+  37   4                                      {
+  38   5                                              timeNum[1]=0;
+  39   5                                              timeNum[3]++;
+  40   5                                              if(timeNum[3]==10)
+  41   5                                              {
+  42   6                                                      timeNum[3]=0;
+  43   6                                                      timeNum[4]++;
+  44   6                                                      if(timeNum[4]==6)
+  45   6                                                      {
+  46   7                                                              timeNum[4]=0;
+  47   7                                                              timeNum[6]++;
+  48   7                                                              if(timeNum[7]==2 && timeNum[6]==4)
+  49   7                                                              {
+  50   8                                                                      timeNum[7]=0;
+  51   8                                                                      timeNum[6]=0;
+  52   8                                                              }
+  53   7                                                              if(timeNum[6]==10)
+  54   7                                                              {
+C51 COMPILER V9.57.0.0   TIME                                                              01/13/2020 15:09:01 PAGE 2   
+
+  55   8                                                                      timeNum[6]=0;
+  56   8                                                                      timeNum[7]++;
+  57   8                                                              }
+  58   7                                                      }
+  59   6                                              }
+  60   5                                      }
+  61   4                              }
+  62   3                      }
+  63   2                      
+  64   2                      if(flag == 0)//按一次增加一次
+  65   2                      {
+  66   3                              if(ADD == 0)
+  67   3                              {
+  68   4                                      flag = 1;
+  69   4                                      j = 200;
+  70   4                                      continue;
+  71   4                              }
+  72   3                      }
+  73   2                      if(flag == 1)
+  74   2                      {
+  75   3                              if(ADD == 1)
+  76   3                              {
+  77   4                                      flag = 0;
+  78   4                              }
+  79   3                      }
+  80   2                      
+  81   2                      for(i=0;i<8;i++)
+  82   2                      {
+  83   3                              P3 = disp_led[i];
+  84   3                              P0 = tab_num[ timeNum[7-i] ];
+  85   3                              delayms(2);
+  86   3                              P0 = 0x00;
+  87   3                      }
+  88   2              }
+  89   1      }
+  90          
+  91          
+  92          void delayms(u32 ms)
+  93          {
+  94   1              u8 i;
+  95   1              while(ms--)
+  96   1              {
+  97   2                      for(i=0;i<85;i++);
+  98   2              }
+  99   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    209    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     19      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

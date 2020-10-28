@@ -1,0 +1,210 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/15/2020  15:06:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL UVISION5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\LED.obj TO .\Objects\TEM PRINT (.\Listings\TEM.m51) R
+>> AMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\LED.obj (LED)
+  D:\KEIL UVISION5\C51\LIB\C51S.LIB (?C_INIT)
+  D:\KEIL UVISION5\C51\LIB\C51S.LIB (?C?LLDIIDATA)
+
+
+LINK MAP OF MODULE:  .\Objects\TEM (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            DATA    000CH     0003H     UNIT         ?DT?LED
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+                    0006H     0005H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    009AH     003DH     UNIT         ?PR?BCON?LED
+            CODE    00D7H     0032H     UNIT         ?PR?TCON?LED
+            CODE    0109H     0021H     UNIT         ?PR?_DELAYMS?LED
+            CODE    012AH     0020H     UNIT         ?C?LIB_CODE
+            CODE    014AH     0014H     UNIT         ?PR?INTERRUPT_CONFIG?LED
+            CODE    015EH     0008H     UNIT         ?PR?MAIN?LED
+            CODE    0166H     0008H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\TEM (?C_STARTUP)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?LED
+  +--> ?C_INITSEG
+
+?PR?MAIN?LED                     -----    -----
+  +--> ?PR?INTERRUPT_CONFIG?LED
+
+*** NEW ROOT ***************************************************
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/15/2020  15:06:05  PAGE 2
+
+
+?PR?BCON?LED                     -----    -----
+  +--> ?PR?_DELAYMS?LED
+
+?PR?_DELAYMS?LED                 0008H    0004H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\TEM (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:000EH         SEGMENT       ?C_C51STARTUP
+  I:000FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0011H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:000EH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:000EH         LINE#         133
+  C:0010H         LINE#         134
+  C:0011H         LINE#         135
+  C:0012H         LINE#         136
+  C:0014H         LINE#         185
+  C:0017H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        LED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:015EH         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/15/2020  15:06:05  PAGE 3
+
+
+  D:0088H         PUBLIC        TCON
+  B:0088H.1       PUBLIC        IE0
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  C:014AH         PUBLIC        interrupt_config
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:000EH         PUBLIC        frequency
+  C:009AH         PUBLIC        BCon
+  D:00C8H         PUBLIC        T2CON
+  C:0109H         PUBLIC        _delayms
+  C:00D7H         PUBLIC        TCon
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:015EH         LINE#         26
+  C:015EH         LINE#         27
+  C:015EH         LINE#         28
+  C:0161H         LINE#         29
+  C:0164H         LINE#         30
+  -------         ENDPROC       MAIN
+  -------         PROC          _DELAYMS
+  D:0008H         SYMBOL        ms
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:0109H         LINE#         36
+  C:0111H         LINE#         37
+  C:0111H         LINE#         39
+  C:011EH         LINE#         40
+  C:011EH         LINE#         41
+  C:0129H         LINE#         42
+  C:0129H         LINE#         43
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          INTERRUPT_CONFIG
+  C:014AH         LINE#         48
+  C:014AH         LINE#         49
+  C:014AH         LINE#         51
+  C:014DH         LINE#         52
+  C:0150H         LINE#         53
+  C:0153H         LINE#         54
+  C:0155H         LINE#         55
+  C:0157H         LINE#         58
+  C:0159H         LINE#         59
+  C:015BH         LINE#         62
+  C:015DH         LINE#         63
+  -------         ENDPROC       INTERRUPT_CONFIG
+  -------         PROC          TCON
+  -------         DO            
+  D:000CH         SYMBOL        num
+  -------         ENDDO         
+  C:00D7H         LINE#         68
+  C:00E0H         LINE#         71
+  C:00E3H         LINE#         72
+  C:00E6H         LINE#         73
+  C:00F9H         LINE#         74
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/15/2020  15:06:05  PAGE 4
+
+
+  C:00F9H         LINE#         75
+  C:00FCH         LINE#         76
+  C:0102H         LINE#         77
+  C:0102H         LINE#         78
+  -------         ENDPROC       TCON
+  -------         PROC          BCON
+  C:009AH         LINE#         80
+  C:00ADH         LINE#         82
+  C:00AFH         LINE#         83
+  C:00B6H         LINE#         84
+  C:00B6H         LINE#         85
+  C:00B9H         LINE#         86
+  C:00B9H         LINE#         88
+  C:00C4H         LINE#         89
+  C:00C6H         LINE#         90
+  -------         ENDPROC       BCON
+  -------         ENDMOD        LED
+
+  -------         MODULE        ?C?LLDIIDATA
+  C:0133H         PUBLIC        ?C?LLDIIDATA
+  C:012AH         PUBLIC        ?C?LLDIIDATA1
+  C:012CH         PUBLIC        ?C?LLDIIDATA8
+  -------         ENDMOD        ?C?LLDIIDATA
+
+Program Size: data=16.0 xdata=0 code=361
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

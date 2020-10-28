@@ -1,0 +1,198 @@
+C51 COMPILER V9.57.0.0   TIME                                                              01/16/2020 10:24:11 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE TIME
+OBJECT MODULE PLACED IN .\Objects\time.obj
+COMPILER INVOKED BY: D:\Keil uVision5\C51\BIN\C51.EXE time.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\time.lst) TABS(2) OBJECT(.\Objects\time.obj)
+
+line level    source
+
+   1          /***********************************************
+   2           *  auther:YI
+   3           *  time:2020-1-16-9:55
+   4           *
+   5           *  题目一
+   6           *  WX接位选
+   7           *  DX接段选
+   8           *  Buttom接独立按键
+   9          ************************************************/
+  10          #include <reg52.h>
+  11          #include <intrins.h>
+  12          typedef unsigned char u8;
+  13          typedef unsigned int  u16;                                                                                
+             -        
+  14          typedef unsigned long u32;
+  15          
+  16          void interrupt_config(void); //配置函数
+  17          void delayms(u32 ms);          //延时函数
+  18          void delayms1(u32 ms);         //延时函数
+  19          void delayms2(u32 ms);         //延时函数
+  20          
+  21          #define WX P0
+  22          #define DX P2
+  23          
+  24          u8 tab_num[]  = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x40}; //段选
+  25          u8 led_num[] = {0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd ,0xfe};                    //位选
+  26          u32 timestamp=0;        //时间戳
+  27          u8 led_vlu[8]={0,0,10,0,0,10,0,0};
+  28          u8 run_state=1; //标记运行的状态  1表示运行 2表示停止
+  29          u8 add_state=0; //标记时间戳增加状态
+  30          
+  31          /****************************
+  32           *        主函数
+  33          *****************************/
+  34          void main()
+  35          {
+  36   1        u8 i;//循环变量
+  37   1        interrupt_config();//配置
+  38   1        while(1)
+  39   1        {
+  40   2          if(add_state)
+  41   2          {
+  42   3            timestamp++;
+  43   3            add_state=0;
+  44   3          }
+  45   2          led_vlu[7]=timestamp%10;
+  46   2          led_vlu[6]=timestamp%60/10;
+  47   2          
+  48   2          led_vlu[4]=timestamp/60%10;
+  49   2          led_vlu[3]=timestamp/60%60/10;
+  50   2          
+  51   2          led_vlu[1]=timestamp/60/60%10;
+  52   2          led_vlu[0]=timestamp/60/60/10;
+  53   2          
+C51 COMPILER V9.57.0.0   TIME                                                              01/16/2020 10:24:11 PAGE 2   
+
+  54   2          if(led_vlu[0] == 2)
+  55   2          {
+  56   3            if(led_vlu[0] == 4)
+  57   3            {
+  58   4              led_vlu[0]=0;
+  59   4              led_vlu[1]=0;
+  60   4            }
+  61   3          }
+  62   2          
+  63   2          for(i=0;i<8;i++)
+  64   2          {
+  65   3            WX = led_num[i];
+  66   3            DX = tab_num[ led_vlu[i] ];
+  67   3            delayms(1);
+  68   3            DX = 0x00;
+  69   3          }
+  70   2        }
+  71   1      }
+  72          
+  73          /****************************
+  74           *        延时函数
+  75          *****************************/
+  76          void delayms1(u32 ms)
+  77          {
+  78   1        u8 i;
+  79   1        while(ms--)
+  80   1        {
+  81   2          for(i=0;i<85;i++);
+  82   2        }
+  83   1      }
+  84          
+  85          void delayms2(u32 ms)
+  86          {
+  87   1        u8 i;
+  88   1        while(ms--)
+  89   1        {
+  90   2          for(i=0;i<85;i++);
+  91   2        }
+  92   1      }
+  93          
+  94          void delayms(u32 ms)
+  95          {
+  96   1        u8 i;
+  97   1        while(ms--)
+  98   1        {
+  99   2          for(i=0;i<85;i++);
+ 100   2        }
+ 101   1      }
+ 102          /****************************
+ 103           *   中断服务配置函数
+ 104          *****************************/
+ 105          void interrupt_config(void)
+ 106          {   
+ 107   1      //定时器配置
+ 108   1        TMOD = 0x01;  //启动方式+功能选择+模式选择
+ 109   1        TH0=0x3c;     //定时器高8位
+ 110   1        TL0=0xb0;     //定时器第八位
+ 111   1        TR0=1;        //源允许 
+ 112   1        ET0=1;        //启动
+ 113   1        
+ 114   1      //外部中断Regin配置
+ 115   1        IT0=1;        //触发方式
+C51 COMPILER V9.57.0.0   TIME                                                              01/16/2020 10:24:11 PAGE 3   
+
+ 116   1        EX0=1;        //源允许
+ 117   1        
+ 118   1      //外部中断Pluse配置
+ 119   1        IT1=1;        //触发方式
+ 120   1        EX1=1;        //源允许
+ 121   1        
+ 122   1      //开！
+ 123   1        EA=1;         //总允许
+ 124   1      }
+ 125          
+ 126          /****************************
+ 127           *     中断服务函数
+ 128          *****************************/
+ 129          void T0Con(void) interrupt 1//定时器触发函数
+ 130          {
+ 131   1        static num=0;
+ 132   1        TH0=0x3c; //复位 (65536-50000)/256
+ 133   1        TL0=0xb0; //复位 (65536-50000)%256
+ 134   1        if(run_state)
+ 135   1        {
+ 136   2          if(++num >= 20)
+ 137   2          {
+ 138   3            num=0;
+ 139   3            add_state=1;
+ 140   3          }
+ 141   2        }
+ 142   1      }
+ 143          
+ 144          void Regian(void) interrupt 0//外部中断触发函数---归零
+ 145          {
+ 146   1        DX=0x00;
+ 147   1        timestamp = 0;
+ 148   1      
+ 149   1        delayms1(500);  //消抖！！
+ 150   1        IE0=0;        //中断标记置零！
+ 151   1      }
+ 152          
+ 153          void Pluse(void) interrupt 2//外部中断触发函数---暂停
+ 154          {
+ 155   1        DX=0x00;
+ 156   1        if(run_state==1)
+ 157   1        {
+ 158   2          run_state=0;
+ 159   2        }
+ 160   1        else
+ 161   1        {
+ 162   2          run_state=1;
+ 163   2        }
+ 164   1        
+ 165   1        delayms2(500);  //消抖！！
+ 166   1        IE1=0;          //中断标记置零！
+ 167   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    602    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     35      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.57.0.0   TIME                                                              01/16/2020 10:24:11 PAGE 4   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

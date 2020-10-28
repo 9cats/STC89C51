@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+      "**/*.A51": true,
+      "**/Objects":true,
+      "**/Listings":true,
+      "**/*.uvgui.*":true,
+      "**/*.uvopt":true,
+      "**/*.uvproj":true
+    }
+  }

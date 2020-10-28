@@ -1,0 +1,77 @@
+C51 COMPILER V9.57.0.0   TIME                                                              01/15/2020 11:27:30 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE TIME
+OBJECT MODULE PLACED IN .\Objects\TIME.obj
+COMPILER INVOKED BY: D:\Keil uVision5\C51\BIN\C51.EXE TIME.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\TIME.lst) TABS(2) OBJECT(.\Objects\TIME.obj)
+
+line level    source
+
+   1          /***********************************************
+   2           *  auther:YI
+   3           *  time:2020-1-14-10:30
+   4           *
+   5           *  定时器控制LED
+   6           *  LED接最简单的LED
+   7          ************************************************/
+   8          #include <reg52.h>
+   9          #include <intrins.h>
+  10          typedef unsigned char u8;
+  11          typedef unsigned int  u16;                                                                                
+             -        
+  12          typedef unsigned long u32;
+  13          
+  14          void Time0_interrupt_config(void); //配置函数
+  15            
+  16          #define LED P2
+  17          
+  18          void main()
+  19          {
+  20   1        LED=0;
+  21   1        Time0_interrupt_config();
+  22   1        while(1);
+  23   1      }
+  24          
+  25          /**********************************************
+  26           *  定时器终端的配置函数
+  27          ************************************************/
+  28          void Time0_interrupt_config(void)
+  29          {
+  30   1        TMOD = 0x01;  //启动方式+功能选择+模式选择
+  31   1        TH0=0x3d;     //(65536-50000)/256;
+  32   1        TL0=0xb0;     //(65536-50000)%256;
+  33   1        EA=1;         //总允许
+  34   1        ET0=1;        //启动
+  35   1        TR0=1;        //源允许
+  36   1      }
+  37          /**********************************************
+  38           *  定时器中断函数
+  39          ************************************************/
+  40          void TCon(void) interrupt 1
+  41          {
+  42   1        static u8 num=0;
+  43   1        TH0=0x3d;     //(65536-50000)/256;
+  44   1        TL0=0xb0;     //(65536-50000)%256;
+  45   1        if(++num==20)
+  46   1        {
+  47   2          LED = ~LED;
+  48   2          num=0;
+  49   2        }
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.57.0.0   TIME                                                              01/15/2020 11:27:30 PAGE 2   
+
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

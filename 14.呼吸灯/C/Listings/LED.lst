@@ -1,0 +1,73 @@
+C51 COMPILER V9.57.0.0   LED                                                               01/14/2020 17:09:45 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN .\Objects\LED.obj
+COMPILER INVOKED BY: D:\Keil uVision5\C51\BIN\C51.EXE LED.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\LED.lst) TABS(2) OBJECT(.\Objects\LED.obj)
+
+line level    source
+
+   1          /***********************************************
+   2           *  auther:YI
+   3           *  time:2020-1-14-10:30
+   4           *
+   5           *  渐变呼吸灯
+   6          ************************************************/
+   7          #include <reg52.h>
+   8          #include <intrins.h>
+   9          typedef unsigned char u8;
+  10          typedef unsigned int u16;                                                                                 
+             -       
+  11          typedef unsigned long u32;
+  12          void delayms(u32 ms);   //延时函数
+  13          void delay(u32 ms);
+  14          
+  15          #define LED P0
+  16          u8 dis_led[8]={0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd ,0xfe};
+  17          
+  18          void main()
+  19          {
+  20   1        u8 i,j,m;
+  21   1        while(1)
+  22   1        {
+  23   2          for(i=0;i<10;i++)
+  24   2          {
+  25   3            for(m=0;m<5;m++)
+  26   3            {
+  27   4              for(j=0;j<8;j++)
+  28   4              {
+  29   5                LED = dis_led[j];
+  30   5                delayms(10-i+j*2);
+  31   5                LED = 0xff;
+  32   5                delayms(i);
+  33   5              }
+  34   4            }
+  35   3          }
+  36   2        }
+  37   1      }
+  38          
+  39          void delayms(u32 ms)
+  40          {
+  41   1        u8 i;
+  42   1        while(ms--)
+  43   1        {
+  44   2          for(i=0;i<1;i++);
+  45   2        }
+  46   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    119    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V9.57.0.0   LED                                                               01/14/2020 17:09:45 PAGE 2   
+
+   DATA SIZE        =      8       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

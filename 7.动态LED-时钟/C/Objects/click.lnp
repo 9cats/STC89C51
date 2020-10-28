@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\time.obj" 
+TO ".\Objects\click" 
+PRINT(".\Listings\click.m51") RAMSIZE(256) 

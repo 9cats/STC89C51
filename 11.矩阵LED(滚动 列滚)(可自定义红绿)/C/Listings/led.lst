@@ -1,0 +1,95 @@
+C51 COMPILER V9.57.0.0   LED                                                               01/14/2020 08:37:59 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN .\Objects\led.obj
+COMPILER INVOKED BY: D:\Keil uVision5\C51\BIN\C51.EXE led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\led.lst) TABS(2) OBJECT(.\Objects\led.obj)
+
+line level    source
+
+   1          /***********************************************
+   2           *  auther:YI
+   3           *  time:2020-1-13-23:42
+   4           *
+   5           *  Ran接矩阵行(JP19(绿)/20(红))
+   6           *  Col接矩阵列(JP12)
+   7           *  只需要修改页内容
+   8          ************************************************/
+   9          
+  10          #include <reg51.h>
+  11          #include <intrins.h>
+  12          typedef unsigned char u8;
+  13          typedef unsigned int u16;                                                                                 
+             -       
+  14          typedef unsigned long u32;
+  15          void delayms(u32 ms);   //延时函数
+  16          
+  17          #define Row P0
+  18          #define Col_red P2
+  19          #define Col_gre P3
+  20          
+  21          u8 code Row_vlu[8]={0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01};
+  22          u8 code Col_red_vlu[]={
+  23          0xFF,0xBD,0xDB,0xE7,0xE7,0xDB,0xBD,0xFF,
+  24          0xDF,0xDF,0xC7,0xDB,0xDB,0xE7,0xFF,0xFF,
+  25          0xBD,0x9D,0xAD,0xB5,0xB9,0xBD,0xFF,0x87,
+  26          0xBB,0xBB,0x87,0xBB,0xBB,0x87,0xFF,0xFF,
+  27          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  28          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  29          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  30          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  31          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  32          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,/*"未命名文件",0*/
+  33          };
+  34          u8 code Col_gre_vlu[]={0xff};
+  35          
+  36          void main()
+  37          {
+  38   1        u8 i,j,m;
+  39   1        while(1)
+  40   1        {
+  41   2          for(j=0;j<sizeof(Col_red_vlu)-8;j++)
+  42   2          {
+  43   3            for(m=0;m<30;m++)
+  44   3            {
+  45   4              for(i=0;i<8;i++)
+  46   4              {
+  47   5                Row = Row_vlu[i];
+  48   5                Col_red = Col_red_vlu[i+j];
+  49   5                Col_gre = Col_gre_vlu[i+j];
+  50   5                delayms(1);
+  51   5                Col_red = 0xff;
+  52   5                Col_gre = 0xff;
+  53   5              }
+C51 COMPILER V9.57.0.0   LED                                                               01/14/2020 08:37:59 PAGE 2   
+
+  54   4            }
+  55   3          }
+  56   2        }
+  57   1        
+  58   1      } 
+  59            
+  60          void delayms(u32 ms)
+  61          {
+  62   1        u8 i;
+  63   1        while(ms--)
+  64   1        {
+  65   2          for(i=0;i<85;i++);
+  66   2        }
+  67   1      }
+  68            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    114    ----
+   CONSTANT SIZE    =     89    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

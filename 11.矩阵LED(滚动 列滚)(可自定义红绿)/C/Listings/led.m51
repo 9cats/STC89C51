@@ -1,0 +1,158 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/14/2020  08:37:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL UVISION5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\led.obj TO .\Objects\led PRINT (.\Listings\led.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\led.obj (LED)
+  D:\KEIL UVISION5\C51\LIB\C51S.LIB (?C?LLDIIDATA)
+
+
+LINK MAP OF MODULE:  .\Objects\led (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0059H     UNIT         ?CO?LED
+            CODE    005CH     0051H     UNIT         ?PR?MAIN?LED
+            CODE    00ADH     0021H     UNIT         ?PR?_DELAYMS?LED
+            CODE    00CEH     0020H     UNIT         ?C?LIB_CODE
+            CODE    00EEH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\led (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LED
+
+?PR?MAIN?LED                   0008H    0003H
+  +--> ?CO?LED
+  +--> ?PR?_DELAYMS?LED
+
+?PR?_DELAYMS?LED               000BH    0004H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\led (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00EEH         SEGMENT       ?C_C51STARTUP
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/14/2020  08:37:59  PAGE 2
+
+
+  I:000FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00F1H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00EEH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00EEH         LINE#         133
+  C:00F0H         LINE#         134
+  C:00F1H         LINE#         135
+  C:00F2H         LINE#         136
+  C:00F4H         LINE#         185
+  C:00F7H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        LED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:005CH         PUBLIC        main
+  C:0003H         PUBLIC        Row_vlu
+  C:00ADH         PUBLIC        _delayms
+  C:000BH         PUBLIC        Col_red_vlu
+  C:005BH         PUBLIC        Col_gre_vlu
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        j
+  D:000AH         SYMBOL        m
+  -------         ENDDO         
+  C:005CH         LINE#         36
+  C:005CH         LINE#         37
+  C:005CH         LINE#         39
+  C:005CH         LINE#         40
+  C:005CH         LINE#         41
+  C:005FH         LINE#         42
+  C:005FH         LINE#         43
+  C:0062H         LINE#         44
+  C:0062H         LINE#         45
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/14/2020  08:37:59  PAGE 3
+
+
+  C:0065H         LINE#         46
+  C:0065H         LINE#         47
+  C:006DH         LINE#         48
+  C:0078H         LINE#         49
+  C:007FH         LINE#         50
+  C:008AH         LINE#         51
+  C:008DH         LINE#         52
+  C:0090H         LINE#         53
+  C:0099H         LINE#         54
+  C:00A2H         LINE#         55
+  -------         ENDPROC       MAIN
+  -------         PROC          _DELAYMS
+  D:000BH         SYMBOL        ms
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:00ADH         LINE#         60
+  C:00B5H         LINE#         61
+  C:00B5H         LINE#         63
+  C:00C2H         LINE#         64
+  C:00C2H         LINE#         65
+  C:00CDH         LINE#         66
+  C:00CDH         LINE#         67
+  -------         ENDPROC       _DELAYMS
+  -------         ENDMOD        LED
+
+  -------         MODULE        ?C?LLDIIDATA
+  C:00D7H         PUBLIC        ?C?LLDIIDATA
+  C:00CEH         PUBLIC        ?C?LLDIIDATA1
+  C:00D0H         PUBLIC        ?C?LLDIIDATA8
+  -------         ENDMOD        ?C?LLDIIDATA
+
+Program Size: data=16.0 xdata=0 code=250
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

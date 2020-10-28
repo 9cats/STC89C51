@@ -1,0 +1,191 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/10/2020  23:45:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL UVISION5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\runHroseLed.obj TO .\Objects\runHroseled PRINT (.\Lis
+>> tings\runHroseled.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\runHroseLed.obj (RUNHROSELED)
+
+
+LINK MAP OF MODULE:  .\Objects\runHroseled (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0074H     UNIT         ?PR?_RUN_HROSE?RUNHROSELED
+            CODE    0077H     0026H     UNIT         ?PR?_DELAY?RUNHROSELED
+            CODE    009DH     0013H     UNIT         ?PR?MAIN?RUNHROSELED
+            CODE    00B0H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\runHroseled (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?RUNHROSELED
+
+?PR?MAIN?RUNHROSELED
+  +--> ?PR?_RUN_HROSE?RUNHROSELED
+
+?PR?_RUN_HROSE?RUNHROSELED
+  +--> ?PR?_DELAY?RUNHROSELED
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\runHroseled (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00B0H         SEGMENT       ?C_C51STARTUP
+  I:0008H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/10/2020  23:45:37  PAGE 2
+
+
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00B3H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00B0H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00B0H         LINE#         133
+  C:00B2H         LINE#         134
+  C:00B3H         LINE#         135
+  C:00B4H         LINE#         136
+  C:00B6H         LINE#         185
+  C:00B9H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        RUNHROSELED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0083H         PUBLIC        _delay
+  C:009DH         PUBLIC        main
+  C:0003H         PUBLIC        _run_hrose
+  C:007CH         SYMBOL        L?0043
+  C:007DH         SYMBOL        L?0044
+  C:007FH         SYMBOL        L?0045
+  -------         PROC          L?0042
+  -------         ENDPROC       L?0042
+  C:007CH         SYMBOL        L?0043
+  C:007DH         SYMBOL        L?0044
+  C:007FH         SYMBOL        L?0045
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0083H         LINE#         6
+  C:0083H         LINE#         7
+  C:0083H         LINE#         9
+  C:0087H         LINE#         10
+  C:009CH         LINE#         11
+  -------         ENDPROC       _DELAY
+  -------         PROC          _RUN_HROSE
+  D:0007H         SYMBOL        mode
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/10/2020  23:45:37  PAGE 3
+
+
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         13
+  C:0003H         LINE#         14
+  C:0003H         LINE#         16
+  C:0015H         LINE#         17
+  C:0015H         LINE#         18
+  C:0015H         LINE#         19
+  C:001AH         LINE#         20
+  C:001AH         LINE#         21
+  C:001AH         LINE#         22
+  C:001DH         LINE#         23
+  C:0023H         LINE#         24
+  C:0023H         LINE#         25
+  C:0023H         LINE#         26
+  C:0028H         LINE#         27
+  C:0028H         LINE#         28
+  C:0028H         LINE#         29
+  C:002BH         LINE#         30
+  C:0031H         LINE#         31
+  C:0031H         LINE#         32
+  C:0031H         LINE#         33
+  C:0034H         LINE#         34
+  C:0036H         LINE#         35
+  C:0036H         LINE#         36
+  C:0041H         LINE#         37
+  C:0044H         LINE#         38
+  C:0049H         LINE#         39
+  C:0049H         LINE#         40
+  C:0049H         LINE#         41
+  C:004CH         LINE#         42
+  C:004EH         LINE#         43
+  C:004EH         LINE#         44
+  C:005EH         LINE#         45
+  C:0061H         LINE#         46
+  C:0066H         LINE#         47
+  C:0066H         LINE#         48
+  C:0066H         LINE#         49
+  C:0068H         LINE#         50
+  C:0068H         LINE#         51
+  C:0069H         LINE#         52
+  C:006CH         LINE#         53
+  C:006FH         LINE#         54
+  C:0072H         LINE#         55
+  C:0076H         LINE#         56
+  C:0076H         LINE#         57
+  C:0076H         LINE#         58
+  -------         ENDPROC       _RUN_HROSE
+  -------         PROC          MAIN
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:009DH         LINE#         60
+  C:009DH         LINE#         61
+  C:009DH         LINE#         63
+  C:009DH         LINE#         64
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/10/2020  23:45:37  PAGE 4
+
+
+  C:009DH         LINE#         65
+  C:00A0H         LINE#         66
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        RUNHROSELED
+
+Program Size: data=9.0 xdata=0 code=188
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

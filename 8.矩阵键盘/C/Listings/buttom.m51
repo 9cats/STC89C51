@@ -1,0 +1,173 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/13/2020  13:58:38  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL UVISION5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\buttom.obj TO .\Objects\buttom PRINT (.\Listings\butt
+>> om.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\buttom.obj (BUTTOM)
+  D:\KEIL UVISION5\C51\LIB\C51S.LIB (?C_INIT)
+  D:\KEIL UVISION5\C51\LIB\C51S.LIB (?C?LLDIIDATA)
+
+
+LINK MAP OF MODULE:  .\Objects\buttom (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?BUTTOM
+            DATA    0019H     0004H     UNIT         _DATA_GROUP_
+            IDATA   001DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0063H     UNIT         ?PR?SCANBUTTOM?BUTTOM
+            CODE    00F2H     0021H     UNIT         ?PR?_DELAYMS?BUTTOM
+            CODE    0113H     0020H     UNIT         ?C?LIB_CODE
+            CODE    0133H     0015H     UNIT         ?PR?MAIN?BUTTOM
+            CODE    0148H     0014H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\buttom (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?BUTTOM
+  +--> ?C_INITSEG
+
+?PR?MAIN?BUTTOM                -----    -----
+  +--> ?PR?SCANBUTTOM?BUTTOM
+  +--> ?PR?_DELAYMS?BUTTOM
+
+?PR?_DELAYMS?BUTTOM            0019H    0004H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\buttom (?C_STARTUP)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/13/2020  13:58:38  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0003H         SEGMENT       ?C_C51STARTUP
+  I:001DH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0006H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0003H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0003H         LINE#         133
+  C:0005H         LINE#         134
+  C:0006H         LINE#         135
+  C:0007H         LINE#         136
+  C:0009H         LINE#         185
+  C:000CH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        BUTTOM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:0133H         PUBLIC        main
+  C:008FH         PUBLIC        scanButtom
+  D:0008H         PUBLIC        disp_vlu
+  C:00F2H         PUBLIC        _delayms
+  -------         PROC          MAIN
+  C:0133H         LINE#         21
+  C:0133H         LINE#         22
+  C:0133H         LINE#         23
+  C:013DH         LINE#         24
+  -------         ENDPROC       MAIN
+  -------         PROC          _DELAYMS
+  D:0019H         SYMBOL        ms
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:00F2H         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/13/2020  13:58:38  PAGE 3
+
+
+  C:00FAH         LINE#         28
+  C:00FAH         LINE#         30
+  C:0107H         LINE#         31
+  C:0107H         LINE#         32
+  C:0112H         LINE#         33
+  C:0112H         LINE#         34
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          SCANBUTTOM
+  -------         DO            
+  D:0007H         SYMBOL        key
+  -------         ENDDO         
+  C:008FH         LINE#         41
+  C:008FH         LINE#         42
+  C:008FH         LINE#         43
+  C:0091H         LINE#         45
+  C:0094H         LINE#         46
+  C:009FH         LINE#         47
+  C:009FH         LINE#         48
+  C:00B2H         LINE#         49
+  C:00B2H         LINE#         50
+  C:00B6H         LINE#         51
+  C:00BAH         LINE#         52
+  C:00BEH         LINE#         53
+  C:00C0H         LINE#         54
+  C:00C0H         LINE#         55
+  C:00C3H         LINE#         56
+  C:00CEH         LINE#         57
+  C:00CEH         LINE#         58
+  C:00E0H         LINE#         59
+  C:00E0H         LINE#         60
+  C:00E5H         LINE#         61
+  C:00EAH         LINE#         62
+  C:00EEH         LINE#         63
+  C:00EFH         LINE#         64
+  C:00EFH         LINE#         65
+  C:00EFH         LINE#         66
+  C:00EFH         LINE#         67
+  C:00F1H         LINE#         68
+  -------         ENDPROC       SCANBUTTOM
+  -------         ENDMOD        BUTTOM
+
+  -------         MODULE        ?C?LLDIIDATA
+  C:011CH         PUBLIC        ?C?LLDIIDATA
+  C:0113H         PUBLIC        ?C?LLDIIDATA1
+  C:0115H         PUBLIC        ?C?LLDIIDATA8
+  -------         ENDMOD        ?C?LLDIIDATA
+
+Program Size: data=30.0 xdata=0 code=348
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
